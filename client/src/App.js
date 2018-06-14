@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -16,7 +18,7 @@ import Header from './Component/Header';
 
 const drawerWidth = 240;
 
-const styles = {
+const styles = theme => ({
     root: {
       flexGrow: 1,
     },
@@ -30,16 +32,16 @@ const styles = {
     },
     appBar: {
       position: 'absolute',
-      transition: transitions.create(['margin', 'width'], {
-        easing: transitions.easing.sharp,
-        duration: transitions.duration.leavingScreen,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
       }),
     },
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
-      transition: transitions.create(['margin', 'width'], {
-        easing: transitions.easing.easeOut,
-        duration: transitions.duration.enteringScreen,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
       }),
     },
     'appBarShift-left': {
@@ -71,15 +73,15 @@ const styles = {
       alignItems: 'center',
       justifyContent: 'flex-end',
       padding: '0 8px',
-      ...mixins.toolbar,
+      ...theme.mixins.toolbar,
     },
     content: {
       flexGrow: 1,
-      backgroundColor: palette.background.default,
-      padding: spacing.unit * 3,
-      transition: transitions.create('margin', {
-        easing: transitions.easing.sharp,
-        duration: transitions.duration.leavingScreen,
+      backgroundColor: theme.palette.background.default,
+      padding: theme.spacing.unit * 3,
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
       }),
     },
     'content-left': {
@@ -89,9 +91,9 @@ const styles = {
       marginRight: -drawerWidth,
     },
     contentShift: {
-      transition: transitions.create('margin', {
-        easing: transitions.easing.easeOut,
-        duration: transitions.duration.enteringScreen,
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
       }),
     },
     'contentShift-left': {
@@ -100,7 +102,7 @@ const styles = {
     'contentShift-right': {
       marginRight: 0,
     },
-  };
+  });
 
 class App extends Component {
   state = {
@@ -121,7 +123,7 @@ class App extends Component {
     const { classes, theme } = this.props;
     const { anchor, open } = this.state;
 
-    console.log(styles.root);
+    console.log(styles);
     console.log(this.state);
     
     const drawer = (
@@ -173,4 +175,11 @@ class App extends Component {
   }
 }
 
-export default App;
+
+
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles, { withTheme: true })(App);

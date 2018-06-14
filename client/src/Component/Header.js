@@ -62,7 +62,7 @@ class Header extends React.Component {
             <AppBar position="static">
                 <Toolbar>
                     <Router>
-                        <Link to="/" exact >
+                        <Link to="/" >
                             <Avatar
                                 alt="Adelle Charles"
                                 src="https://media.licdn.com/dms/image/C5603AQGSYNnMjMlTUQ/profile-displayphoto-shrink_200_200/0?e=1534377600&v=beta&t=FbpCmcC8QrB5Mkr20Rx05YnW5PYKQdHCNnx2UuY6OBQ"
