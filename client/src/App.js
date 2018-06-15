@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -14,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import './App.css';
 import Footer from './Component/Footer';
 import Header from './Component/Header';
+import DrawerList from './Component/DrawerList';
 
 
 const drawerWidth = 240;
@@ -29,13 +27,6 @@ const styles = theme => ({
       position: 'relative',
       display: 'flex',
       width: '100%',
-    },
-    appBar: {
-      position: 'absolute',
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
     },
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -107,7 +98,7 @@ const styles = theme => ({
 class App extends Component {
   state = {
     open: false,
-    anchor: 'left',
+    anchor: 'right',
   };
 
   handleDrawerOpen = () => {
@@ -122,9 +113,6 @@ class App extends Component {
   render() {
     const { classes, theme } = this.props;
     const { anchor, open } = this.state;
-
-    console.log(styles);
-    console.log(this.state);
     
     const drawer = (
       <Drawer
@@ -141,9 +129,7 @@ class App extends Component {
           </IconButton>
         </div>
         <Divider />
-        <List></List>
-        <Divider />
-        <List></List>
+        <DrawerList />
       </Drawer>
     );
 
@@ -154,21 +140,19 @@ class App extends Component {
       
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <div className="App">
-            <Header />
-            {before}
-              <main
-                  className={classNames(classes.content, classes[`content-${anchor}`], {
-                  [classes.contentShift]: open,
-                  [classes[`contentShift-${anchor}`]]: open,
-                  })}
-              >
-                  <div className={classes.drawerHeader} />
-                  <Typography>{'You think water moves fast? You should see ice.'}</Typography>
-              </main>
-            {after}
-            <Footer />
-          </div>
+          <Header anchor={anchor} open={open} handleDrawerOpen={this.handleDrawerOpen} />
+          {before}
+            <main
+                className={classNames(classes.content, classes[`content-${anchor}`], {
+                [classes.contentShift]: open,
+                [classes[`contentShift-${anchor}`]]: open,
+                })}
+            >
+                <div className={classes.drawerHeader} />
+                <Typography>{'You think water moves fast? You should see ice.'}</Typography>
+            </main>
+          {after}
+          <Footer />
         </div>
       </div>
     );
