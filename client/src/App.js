@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import './App.css';
 import Footer from './Component/Footer';
 import Header from './Component/Header';
+import Home from './Component/Home';
 import DrawerList from './Component/DrawerList';
 
 
@@ -149,7 +150,7 @@ class App extends Component {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                <Typography>{'You think water moves fast? You should see ice.'}</Typography>
+                <Home drawerWidth={drawerWidth} />
             </main>
           {after}
           <Footer />
