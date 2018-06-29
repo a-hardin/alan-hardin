@@ -1,41 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { BrowserRouter as Router, Link} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, Typography, IconButton, Avatar }from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import {AppBar, Toolbar, Typography, Grid, Avatar, Button }from '@material-ui/core';
 
-const styles = theme => ({
-    root: {
-      flexGrow: 1,
-    },
+const styles = ({
     appBar: {
       position: 'absolute',
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    row: {
-        display: 'flex',
-        justifyContent: 'center',
-    },
-    flex: {
-      flex: 1,
-    },
-    menuButton: {
-      marginLeft: -12,
-      marginRight: 20,
-    },
-    content: {
-      flexGrow: 1,
-      backgroundColor: theme.palette.background.default,
-      padding: theme.spacing.unit * 3,
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
+      color: 'default',
     },
     avatar: {
       margin: 10,
@@ -44,6 +17,14 @@ const styles = theme => ({
         width: 60,
         height: 60,
     },
+    ul: {
+        listStyleType: 'none'
+    },
+    li: {
+        float: 'left',
+        height: '100%',
+        display: 'block'
+    }
   });
 
 class Header extends React.Component {
@@ -52,31 +33,57 @@ class Header extends React.Component {
         const { classes } = this.props;
 
         return (
-            <AppBar className={classNames(classes.appBar, {
-                [classes.appBarShift]: this.props.open,
-                [classes[`appBarShift-${this.props.anchor}`]]: this.props.open,
-              })}>
+            <AppBar className={classes.appBar}>
                 <Toolbar >
-                    <Router>
-                        <Link to="/" >
-                            <Avatar
-                                alt="Adelle Charles"
-                                src="https://media.licdn.com/dms/image/C5603AQGSYNnMjMlTUQ/profile-displayphoto-shrink_200_200/0?e=1534377600&v=beta&t=FbpCmcC8QrB5Mkr20Rx05YnW5PYKQdHCNnx2UuY6OBQ"
-                                className={classNames(classes.avatar, classes.bigAvatar)}
-                            />
-                        </Link>
-                    </Router>
-                    
-                    <Typography variant="title" color="inherit" align="center" className={classes.flex}>
-                        Alan Hardin
-                    </Typography>
-                    <IconButton 
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={this.props.handleDrawerOpen}
-                        className={classNames(classes.menuButton, this.props.open && classes.hide)}>
-                        <MenuIcon />
-                    </IconButton>
+                    <Grid container spacing={24} alignItems="center" >
+                        <Grid item xs={3}>
+                            <Grid container spacing={8} justify="flex-start" alignItems="center">
+                                <Grid item xs={3}>
+
+                                        <NavLink to="/" >
+                                            <Avatar
+                                                alt="Adelle Charles"
+                                                src="https://media.licdn.com/dms/image/C5603AQGSYNnMjMlTUQ/profile-displayphoto-shrink_200_200/0?e=1534377600&v=beta&t=FbpCmcC8QrB5Mkr20Rx05YnW5PYKQdHCNnx2UuY6OBQ"
+                                                className={classNames(classes.avatar, classes.bigAvatar)}
+                                            />
+                                        </NavLink>
+
+                                </Grid>
+                        
+                                <Grid item xs={4}>
+                                    <Typography variant="title" color="inherit" align="left" className={classes.flex}>
+                                        Alan Hardin
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                        <Grid item xs={6}>
+                            
+                            <Grid container spacing={24} justify="center" alignItems="center">
+                                
+                                <Grid item xs={2}>
+                                    <Button component={NavLink} to="/">
+                                        About
+                                    </Button>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <Button component={NavLink} to="/resume">
+                                        Resume
+                                    </Button>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <Button component={NavLink} to="/contact">
+                                        Contact
+                                    </Button>
+                                </Grid>
+                                
+                            </Grid>
+                            
+                        </Grid>
+                        <Grid item xs={3}>
+                        </Grid>
+                    </Grid>
                 </Toolbar>
             </AppBar>
                     
