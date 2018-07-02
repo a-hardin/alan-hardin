@@ -19,7 +19,7 @@ class About extends React.Component {
         return (
             <Grid container spacing={24} justify="center" alignItems="center" >
                 <Grid item xs={3}>
-                    <div>
+                    <div className="wow bounceIn" >
                         I grow up living in the dallas fort worth area. I found interest early on in my life with computer. I first learned to code 
                         using a TI83 calculator from Math class. My first program was a guess my number game, right away I was hooked. I later in high school would go
                         on to build desktop applications with c++ and web sites with php, html, and css.

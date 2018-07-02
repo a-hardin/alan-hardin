@@ -8,6 +8,7 @@ import About from './Component/About';
 import Resume from './Component/Resume';
 import Contact from './Component/Contact';
 import Footer from './Component/Footer';
+import WOW from "wowjs";
 
 
 const styles = {
@@ -30,6 +31,11 @@ class App extends Component {
     this.state = {
       
     }
+  }
+  
+  componentDidMount() {
+    const wow = new WOW.WOW();
+    wow.init();
   }
 
   render() {
